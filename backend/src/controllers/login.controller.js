@@ -40,8 +40,11 @@ const login = async (req, res) => {
     );
 
     return res.status(201).json({
-      msg: `Welcome back ${userExists.firstName}!`,
+      msg: `Welcome back, ${userExists.firstName}!`,
       token,
+      userId: userExists._id,
+      username: userExists.username,
+      firstName: userExists.firstName,
     });
   } catch (error) {
     return res.status(500).json({

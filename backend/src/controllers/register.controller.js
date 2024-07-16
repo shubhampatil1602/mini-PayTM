@@ -57,8 +57,12 @@ const register = async (req, res) => {
     );
 
     return res.status(201).json({
-      msg: `Welcome ${firstName}!`,
+      msg: `Welcome, ${firstName}!`,
       token,
+      userId: newUser._id,
+      username: newUser.username,
+      firstName: newUser.firstName,
+      balance: newUser.balance,
     });
   } catch (error) {
     return res.status(500).json({

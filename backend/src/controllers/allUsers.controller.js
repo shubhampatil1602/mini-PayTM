@@ -3,7 +3,7 @@ import { User } from '../models/user.model.js';
 const allUsers = async (req, res) => {
   const filter = req.query.filter || '';
   try {
-    const users = User.find({
+    const users = await User.find({
       $or: [
         {
           firstName: {
@@ -18,8 +18,12 @@ const allUsers = async (req, res) => {
       ],
     });
 
+    const filteredUsers = users.filter(
+      (user) => user.username !== req.username
+    );
+
     res.json({
-      user: (await users).map((user) => ({
+      user: filteredUsers.map((user) => ({
         id: user._id,
         username: user.username,
         firstName: user.firstName,

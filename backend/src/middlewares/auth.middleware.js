@@ -15,6 +15,7 @@ const auth = (req, res, next) => {
     const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
     if (verifyToken.userId) {
       req.userId = verifyToken.userId;
+      req.username = verifyToken.username;
       next();
     } else {
       return res.status(403).json({});
