@@ -24,6 +24,8 @@ const allUsers = async (req, res) => {
         username: user.username,
         firstName: user.firstName,
         lastName: user.lastName,
+        createdAt: user.createdAt.toDateString(),
+        updatedAt: user.updatedAt.toLocaleDateString(),
       })),
     });
   } catch (error) {
