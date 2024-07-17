@@ -7,13 +7,15 @@ import Footer from './components/Footer';
 import { UsersContext } from './context/UsersContext';
 import { useState } from 'react';
 import { Toaster } from 'sonner';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [users, setUsers] = useState([]);
   const [userDetails, setUserDetails] = useState({});
+
   return (
     <>
-      <Toaster richColors position='top-right' expand={false}></Toaster>
+      <Toaster richColors position='top-right' expand={false} />
       <UsersContext.Provider
         value={{
           users,
@@ -26,8 +28,15 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Auth />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/send' element={<Send />} />
+            <Route
+              path='/dashboard'
+              element={<ProtectedRoute element={<Dashboard />} />}
+            />
+            <Route
+              path='/send'
+              element={<ProtectedRoute element={<Send />} />}
+            />
+            <Route path='*' element={<Auth />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -3,7 +3,7 @@ import { UsersContext } from '../context/UsersContext';
 import CustomInputBox from './CustomInputBox';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 const Send = () => {
@@ -39,10 +39,16 @@ const Send = () => {
 
   return (
     <div className='bg-slate-300'>
-      <div className='flex bg-slate-50 '>
-        <div className={`w-full lg:w-2/4 lg:pt-8`}>
-          <div className='lg:w-[500px] py-8 rounded-lg bg-white shadow mx-auto lg:border'>
-            <h1 className='font-semibold text-center text-3xl mb-6'>
+      <div className='flex bg-slate-50 h-[600px]'>
+        <div className={`w-full pt-8`}>
+          <Link
+            to={'/dashboard'}
+            className='border px-4 py-2 text-lg rounded shadow-sm bg-white hover:bg-slate-100 m-[5%]'
+          >
+            Back
+          </Link>
+          <div className='lg:w-[500px] mt-8 py-8 lg:rounded-lg bg-white lg:shadow mx-auto lg:border'>
+            <h1 className='font-semibold text-center text-3xl mb-6 underline'>
               Send Money to {userDetails.firstName}
             </h1>
 
